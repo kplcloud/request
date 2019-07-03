@@ -9,7 +9,7 @@ $ go get github.com/nsini/request
 ```go
 import (
 	"fmt"
-	"github.com/nsini/request"
+	"github.com/kplcloud/request"
 )
 
 func main(){
