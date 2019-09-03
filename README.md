@@ -1,7 +1,7 @@
 # 使用方式
 
 ```
-$ go get github.com/nsini/request
+$ go get github.com/kplcloud/request
 ```
 
 ### GET
