@@ -27,6 +27,11 @@ func TestRequest_Do(t *testing.T) {
 		t.Error("err", err.Error())
 	}
 	t.Log("success", res)
+
+	resp := NewRequest("https://www.iphpt.com/", "POST").
+		Body([]byte(body)).Do()
+	t.Log(resp.headers)
+
 }
 
 func TestRequest_HttpClient(t *testing.T) {
