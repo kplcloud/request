@@ -54,6 +54,7 @@ type Result struct {
 	err         error
 	statusCode  int
 	headers     map[string][]string
+	cookies     []*http.Cookie
 
 	decoder Decoder
 }
@@ -106,6 +107,10 @@ func (r Result) HttpStatusCode() int {
 
 func (r Result) Headers() map[string][]string {
 	return r.headers
+}
+
+func (r Result) Cookies() []*http.Cookie {
+	return r.cookies
 }
 
 // StatusCode returns the HTTP status code of the request. (Only valid if no
@@ -453,6 +458,7 @@ func (r *Request) transformResponse(resp *http.Response, req *http.Request) Resu
 			decoder:     decoder,
 			err:         r.transformUnstructuredResponseError(resp, req, body),
 			headers:     resp.Header,
+			cookies:     resp.Cookies(),
 		}
 	}
 
@@ -462,6 +468,7 @@ func (r *Request) transformResponse(resp *http.Response, req *http.Request) Resu
 		statusCode:  resp.StatusCode,
 		decoder:     decoder,
 		headers:     resp.Header,
+		cookies:     resp.Cookies(),
 	}
 }
 

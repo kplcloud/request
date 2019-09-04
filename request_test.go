@@ -31,6 +31,10 @@ func TestRequest_Do(t *testing.T) {
 	resp := NewRequest("https://www.iphpt.com/", "POST").
 		Body([]byte(body)).Do()
 	t.Log(resp.headers)
+	cookies := resp.cookies
+	for _, v := range cookies {
+		t.Log(v.String())
+	}
 
 }
 
