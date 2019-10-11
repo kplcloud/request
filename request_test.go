@@ -21,19 +21,20 @@ func TestRequest_Do(t *testing.T) {
 	var body = `{"hello": "world"}`
 
 	var res []byte
-	err := NewRequest("https://www.iphpt.com/", "POST").
+	err := NewRequest("https://www.baidu.com/", "POST").
 		Body([]byte(body)).Do().Into(&res)
 	if err != nil {
 		t.Error("err", err.Error())
 	}
 	t.Log("success", res)
 
-	resp := NewRequest("https://www.iphpt.com/", "POST").
+	resp := NewRequest("https://www.baidu.com/", "GET").
 		Body([]byte(body)).Do()
 	t.Log(resp.headers)
 	cookies := resp.cookies
 	for _, v := range cookies {
-		t.Log(v.String())
+		t.Log("path", v.Path, "name", v.Name, v.Value, v.Domain, v.Expires, v.MaxAge, v.RawExpires)
+		//t.Log(v.String())
 	}
 
 }
@@ -68,7 +69,7 @@ func TestRequest_HttpClient(t *testing.T) {
 	t.Log("body", body)
 
 	var b []byte
-	if b, err = NewRequest("https://www.iphpt.com/", "GET").
+	if b, err = NewRequest("https://www.baidu.com/", "GET").
 		Body([]byte(body)).Do().Raw(); err != nil {
 		t.Error("raw err", err.Error())
 	}

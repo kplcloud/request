@@ -14,7 +14,10 @@ import (
 
 func main(){
 	// []byte
-	body := request.NewRequest("nsini.com", "GET").Do().Raw()
+	body := request.NewRequest("nsini.com", "GET").
+		Param("a", "b").  // &a=b
+		Param("c", "d").  // &c=d
+		Do().Raw()
 	fmt.Println("byte", string(body))
 	
 	
@@ -34,16 +37,20 @@ import (
 	"github.com/nsini/request"
 )
 
-func main(){
-	var resp map[string]interface{}
-    err := request.NewRequest("nsini.com", "POST").
-    	Body([]byte(`{"hello": "world"}`)).
-    	Do().Into(&resp)
-    if err == nil {
-        fmt.Println(resp)
-    }
+type Res struct {
+	Success bool `json:"success"`
+}
 
-	fmt.Println(string(res))
+func main(){
+	var res Res
+	err := request.NewRequest("nsini.com", "POST").
+		Body([]byte(`{"hello": "world"}`)).
+		Do().Into(&res)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(res.Success)
 }
 ```
 
