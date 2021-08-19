@@ -34,7 +34,7 @@ func main(){
 ```go
 import (
 	"fmt"
-	"github.com/nsini/request"
+	"github.com/kplcloud/request"
 )
 
 type Res struct {
@@ -59,7 +59,7 @@ func main(){
 ```go
 import (
 	"fmt"
-	"github.com/nsini/request"
+	"github.com/kplcloud/request"
 	"crypto/tls"
     "net"
     "net/http"
